@@ -6,8 +6,8 @@
 */DerivedDataCache
 */Intermediate/
 */Saved
+BuildingEscape2/Content/StarterContent/
 
-BuildingEscape/Content/StarterContent/
 ###############################
 #Visual Studio Generated Files#
 ###############################
@@ -16,4 +16,4 @@ BuildingEscape/Content/StarterContent/
 *.VC.db-shm
 *.VC.db-wal
 *.ipch
-BuildingEscape2/Content/StarterContent/
+
