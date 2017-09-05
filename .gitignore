@@ -6,7 +6,14 @@
 */DerivedDataCache
 */Intermediate/
 */Saved
-BuildingEscape2/Content/StarterContent/
+BuildingEscape2/Content/StarterContent/Textures/
+BuildingEscape2/Content/StarterContent/HDRI/
+BuildingEscape2/Content/StarterContent/Audio/
+BuildingEscape2/Content/StarterContent/Blueprints/
+BuildingEscape2/Content/StarterContent/Maps/
+BuildingEscape2/Content/StarterContent/Materials/
+BuildingEscape2/Content/StarterContent/Particles/
+BuildingEscape2/Content/StarterContent/Shapes/
 
 ###############################
 #Visual Studio Generated Files#
@@ -17,3 +24,5 @@ BuildingEscape2/Content/StarterContent/
 *.VC.db-wal
 *.ipch
 
+BuildingEscape2/Content/StarterContent/Architecture/Floor_400x400.uasset
+BuildingEscape2/Content/StarterContent/Architecture/
