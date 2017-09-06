@@ -32,21 +32,22 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	//FString ObjectName = GetOwner()->GetName();
-	//GetOwner()->GetTransform().GetLocation().ToString();
-	//FString ObjectPos = GetOwner()->GetActorLocation().ToString();
-	//GetWorld()->GetFirstPlayerController()->GetPawn();
+	///FString ObjectName = GetOwner()->GetName();
+	///GetOwner()->GetTransform().GetLocation().ToString();
+	///FString ObjectPos = GetOwner()->GetActorLocation().ToString();
+	///GetWorld()->GetFirstPlayerController()->GetPawn();
 	FVector PlayerViewpointLocation;
 	FRotator PlayerViewpointRotation;
 	PlayerController->GetPlayerViewPoint(OUT PlayerViewpointLocation, OUT PlayerViewpointRotation);
 	
-	//TODO Log out to text
-	//UE_LOG(LogTemp, Warning, TEXT("Positioned at %s, Looking at %s"), 
-	//	*PlayerViewpointLocation.ToString(),
-	//	*PlayerViewpointRotation.ToString())
+	///TODO Log out to text
+	///UE_LOG(LogTemp, Warning, TEXT("Positioned at %s, Looking at %s"), 
+	///	*PlayerViewpointLocation.ToString(),
+	///	*PlayerViewpointRotation.ToString())
+
 	FVector LineTraceDirection = PlayerViewpointRotation.Vector() * Reach;
 	FVector LineTraceEnd = PlayerViewpointLocation + LineTraceDirection;
-	//Draw a red trace in the world to visualise
+	///Draw a red trace in the world to visualise
 	DrawDebugLine(
 		GetWorld(),
 		PlayerViewpointLocation,
@@ -57,8 +58,28 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		0.f,
 		10.f
 	);
+	
+	///Setup Query Params
+	FCollisionQueryParams TraceParameters(FName(), false, GetOwner());
+
+
+
+	/// Line-trace (RAY CAST) out to reach distance
+	FHitResult Hit;
+	
+	GetWorld()->LineTraceSingleByObjectType(
+		OUT Hit,
+		PlayerViewpointLocation,
+		LineTraceEnd,
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		TraceParameters
+	);
 
 	// See what we hit
-
+	AActor* ActorHit = Hit.GetActor();
+	if (ActorHit)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Looking at %s"), *(ActorHit->GetName()));
+	}
 }
 
