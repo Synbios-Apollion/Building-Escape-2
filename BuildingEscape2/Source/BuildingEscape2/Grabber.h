@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
-
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h"
 
 
@@ -32,5 +32,5 @@ private:
 
 	//how far ahead can we reach
 	float Reach = 100.f;
-	
+	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 };

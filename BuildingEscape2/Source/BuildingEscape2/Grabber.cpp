@@ -24,6 +24,17 @@ void UGrabber::BeginPlay()
 	UE_LOG(LogTemp, Warning, TEXT("Default Pawn Reporting for duty"));
 	
 	PlayerController = GetWorld()->GetFirstPlayerController();
+
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+
+	if (PhysicsHandle)
+	{
+
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Physics Handle Component not found for %s"), *GetOwner()->GetName());
+	}
 }
 
 
