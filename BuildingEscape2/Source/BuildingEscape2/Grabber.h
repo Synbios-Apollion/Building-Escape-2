@@ -33,4 +33,18 @@ private:
 	//how far ahead can we reach
 	float Reach = 100.f;
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+	UInputComponent* InputComponent = nullptr;
+
+	//Ray cast and grab what is in reach
+	void Grab();
+	void Release();
+
+	//Find (assumed) attached Physics Handle
+	void FindPhysicsHandleComponent();
+
+	// Setup (assumed) attached input component
+	void SetupInputComponent();
+
+	// Return hit for first physics body in reach
+	const FHitResult GetFirstPhysicsBodyInReach();
 };
