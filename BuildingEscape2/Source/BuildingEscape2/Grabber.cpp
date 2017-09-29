@@ -35,6 +35,10 @@ void UGrabber::Grab()
 	// attach physics handle
 	if (ActorHit != nullptr)
 	{
+
+		if (!PhysicsHandle)
+			return;
+
 		PhysicsHandle->GrabComponent(
 			ComponentToGrab,
 			NAME_None,
@@ -46,6 +50,10 @@ void UGrabber::Grab()
 
 void UGrabber::Release()
 {
+
+	if (!PhysicsHandle)
+		return;
+
 	PhysicsHandle->ReleaseComponent();
 }
 
@@ -63,7 +71,7 @@ void UGrabber::SetupInputComponent()
 {
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
 	///Look for attached input component (only appears at runtime)
-	if (InputComponent)
+	if (InputComponent != nullptr)
 	{
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
 		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
@@ -105,6 +113,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (!PhysicsHandle)
+		return;
 	//if the physics handle is attached
 	if (PhysicsHandle->GrabbedComponent)
 	{
